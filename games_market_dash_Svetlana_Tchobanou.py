@@ -9,6 +9,7 @@ import pandas as pd
 from pathlib import Path
 
 app = dash.Dash(__name__) #, external_stylesheets=["https://codepen.io/chriddyp/pen/bWLwgP.css"])
+server = app.server
 
 path_data = Path(Path(__file__).parent, 'games.csv')
 
@@ -132,9 +133,9 @@ def update_data(genre_values,
     return fig1, fig2, text
 
     
-if __name__ == '__main__':
+# if __name__ == '__main__':
 #     app.run_server(debug=True)
-    server = app.server
+    
     
     
     
