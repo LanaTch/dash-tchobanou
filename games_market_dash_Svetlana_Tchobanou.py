@@ -70,15 +70,6 @@ app.layout = html.Div([
     
     html.H3(children=f'всего игр: {df["Name"].nunique()}', id='interactive-text1', style={'width': '49%', 'padding': '10px 10px 10px 10px'}),
     
-    html.H2([
-
-        html.Label("Stacked area plot, показывающий выпуск игр по годам и платформам",
-                 style={'width': '49%', 'display': 'inline-block','padding': '0px 0px 5px 0px', "fontSize": "24px"}),
-
-        html.Label(f"Scatter plot с разбивкой по жанрам (каждому жанру соответствует один цвет). По оси X - оценки игроков, по оси Y - оценки критиков", 
-                 style={'width': '49%', 'float': 'right', 'display': 'inline-block', "fontSize": "24px"})
-        
-    ], style={'padding': '10px 0px'}),
     
     html.Div([
         html.Div(graf1, style={'width': '49%', 'display': 'inline-block', 'hight': '30%', 'padding': '0 20'}),
@@ -107,7 +98,15 @@ def update_data(genre_values,
     dff = df.query('Year_of_Release in @list_years and Rating in @rating_values and Genre in @genre_values')
 
     fig2 = go.Figure(px.scatter(dff, x='User_Score', y='Critic_Score', color='Genre'))
-    fig2['layout']['autosize'] = True
+
+    fig2.update_layout(
+        autosize=True,
+        title= f'Оценка критиков/оценка игроков с разбивкой по жанрам (цвет).',
+        title_font={'size':20},
+        height=600,
+        yaxis=dict(
+            title_text="Count games"
+        ))
             
     data = dff.groupby(by=['Platform', 'Year_of_Release'],  as_index=False)\
               .agg({'Name': 'count'})\
@@ -126,7 +125,17 @@ def update_data(genre_values,
             text=data['Platform'],
             stackgroup='one' # define stack group
         ))
-    fig1['layout']['autosize'] = True
+    fig1.update_layout(
+        autosize=True,
+        title= 'Количество выпущенных игр по годам и платформам',
+        title_font={'size':20},
+        margin_t=60,
+        height=600,
+        legend_title=dict(text='Platform'),
+        yaxis=dict(
+            title_text="Count games"),
+
+    )
     text = f'всего игр: {dff["Name"].nunique()}'
     
     return fig1, fig2, text
