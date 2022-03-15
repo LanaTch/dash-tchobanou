@@ -1,1 +1,1 @@
-web: gunicorn python games_market_dash_Svetlana_Tchobanou
+web: gunicorn python games_market_dash_Svetlana_Tchobanou.py
