@@ -103,10 +103,10 @@ def update_data(genre_values,
         autosize=True,
         title= f'Оценка критиков/оценка игроков с разбивкой по жанрам (цвет).',
         title_font={'size':20},
-        height=600,
-        yaxis=dict(
-            title_text="Count games"
-        ))
+        height=500,
+        yaxis=dict(title_text="User score"),
+        xaxis=dict(title_text="Critic score")
+    )
             
     data = dff.groupby(by=['Platform', 'Year_of_Release'],  as_index=False)\
               .agg({'Name': 'count'})\
@@ -130,7 +130,7 @@ def update_data(genre_values,
         title= 'Количество выпущенных игр по годам и платформам',
         title_font={'size':20},
         margin_t=60,
-        height=600,
+        height=500,
         legend_title=dict(text='Platform'),
         yaxis=dict(
             title_text="Count games"),
