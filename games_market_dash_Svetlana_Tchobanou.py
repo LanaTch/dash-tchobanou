@@ -133,8 +133,8 @@ def update_data(genre_values,
 
     
 if __name__ == '__main__':
-    app.run_server(debug=True)
-    
+#     app.run_server(debug=True)
+    server = app.server
     
     
     
