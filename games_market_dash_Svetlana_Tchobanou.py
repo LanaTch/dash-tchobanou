@@ -1,6 +1,5 @@
 import dash
 from dash import html
-# import dash_bootstrap_components as dbc
 from dash import dcc
 from dash.dependencies import Input, Output
 import plotly.graph_objects as go
@@ -8,7 +7,7 @@ import plotly.express as px
 import pandas as pd
 from pathlib import Path
 
-app = dash.Dash(__name__) #, external_stylesheets=["https://codepen.io/chriddyp/pen/bWLwgP.css"])
+app = dash.Dash(__name__, external_stylesheets=["https://codepen.io/chriddyp/pen/bWLwgP.css"])
 server = app.server
 
 path_data = Path(Path(__file__).parent, 'games.csv')
@@ -49,9 +48,9 @@ app.layout = html.Div([
     html.H2(children="Интерактивный дашборд. Статистика по играм.",
             style={'padding': '10px 5px 5px 5px', "fontSize": "32px"}),
     
-    html.Div("Предназначен для обзора статистики по играм, выпущенным с 2000 по 2016 год."
+    html.Div("Предназначен для обзора статистики по играм, выпущенным с 2000 по 2016 год. "
             "Фильтры по жанрам и рейтингам поддерживают множественный выбор, "
-            "фильт по годам выпуска (внизу страницы) интервальный.",
+            "фильтр по годам выпуска (внизу страницы) интервальный.",
              style={'padding': '10px 5px 5px 5px',"fontSize": "24px" }), #инструкция
     
     html.Div([
