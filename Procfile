@@ -1,1 +1,1 @@
-web:python games_market_dash_Svetlana_Tchobanou.py
+web: gunicorn games_market_dash_Svetlana_Tchobanou: server 
