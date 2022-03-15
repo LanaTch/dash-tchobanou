@@ -8,7 +8,7 @@ import plotly.express as px
 import pandas as pd
 from pathlib import Path
 
-app = dash.Dash(__name__, external_stylesheets=["https://codepen.io/chriddyp/pen/bWLwgP.css"])
+app = dash.Dash(__name__) #, external_stylesheets=["https://codepen.io/chriddyp/pen/bWLwgP.css"])
 
 path_data = Path(Path(__file__).parent, 'games.csv')
 
