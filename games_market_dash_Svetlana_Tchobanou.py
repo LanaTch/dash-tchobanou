@@ -5,6 +5,7 @@ from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
+import numpy as np
 from pathlib import Path
 
 app = dash.Dash(__name__, external_stylesheets=["https://codepen.io/chriddyp/pen/bWLwgP.css"])
