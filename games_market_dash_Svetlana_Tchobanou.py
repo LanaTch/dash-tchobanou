@@ -16,6 +16,9 @@ df = pd.read_csv(path_data)
 df.dropna(inplace=True)
 df = df[df['Year_of_Release'] >= 2000]
 df['Year_of_Release'] = df['Year_of_Release'].astype(int)
+df['Critic_Score'] = df['Critic_Score'].astype(int)
+df['User_Score'] = np.where((df.User_Score == 'tbd'), '-1', df.User_Score)
+df['User_Score'] = df['User_Score'].astype(float)
 
 years_filter = dcc.RangeSlider(
                     id='crossfilter-year--slider',
@@ -97,7 +100,7 @@ def update_data(genre_values,
     list_years = [i for i in range(year_values[0], year_values[1] + 1)]
     dff = df.query('Year_of_Release in @list_years and Rating in @rating_values and Genre in @genre_values')
 
-    fig2 = go.Figure(px.scatter(dff, x='User_Score', y='Critic_Score', color='Genre'))
+    fig2 = go.Figure(px.scatter(dff.sort_values(by='User_Score'), x='User_Score', y='Critic_Score', color='Genre'))
 
     fig2.update_layout(
         autosize=True,
