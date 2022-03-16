@@ -101,7 +101,7 @@ def update_data(genre_values,
     list_years = [i for i in range(year_values[0], year_values[1] + 1)]
     dff = df.query('Year_of_Release in @list_years and Rating in @rating_values and Genre in @genre_values')
 
-    fig2 = go.Figure(px.scatter(dff.sort_values(by='User_Score'), x='User_Score', y='Critic_Score', color='Genre'))
+    fig2 = go.Figure(px.scatter(dff.sort_values(by='User_Score'), x='User_Score', y='Critic_Score', color='Genre', hover_name='Name))
 
     fig2.update_layout(
         autosize=True,
