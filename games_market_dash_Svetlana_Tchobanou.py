@@ -108,8 +108,8 @@ def update_data(genre_values,
         title= f'Оценка критиков/оценка игроков с разбивкой по жанрам (цвет).',
         title_font={'size':20},
         height=500,
-        yaxis=dict(title_text="User score"),
-        xaxis=dict(title_text="Critic score")
+        yaxis=dict(title_text="Critic score"),
+        xaxis=dict(title_text="User score")
     )
             
     data = dff.groupby(by=['Platform', 'Year_of_Release'],  as_index=False)\
