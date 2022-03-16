@@ -5,7 +5,6 @@ from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
-import numpy as np
 from pathlib import Path
 
 app = dash.Dash(__name__, external_stylesheets=["https://codepen.io/chriddyp/pen/bWLwgP.css"])
@@ -16,9 +15,10 @@ path_data = Path(Path(__file__).parent, 'games.csv')
 df = pd.read_csv(path_data)
 df.dropna(inplace=True)
 df = df[df['Year_of_Release'] >= 2000]
+df = df.loc[df['User_Score'] != 'tbd']
+
 df['Year_of_Release'] = df['Year_of_Release'].astype(int)
 df['Critic_Score'] = df['Critic_Score'].astype(int)
-df['User_Score'] = np.where((df.User_Score == 'tbd'), '-1', df.User_Score)
 df['User_Score'] = df['User_Score'].astype(float)
 
 years_filter = dcc.RangeSlider(
